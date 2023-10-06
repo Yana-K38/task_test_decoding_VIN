@@ -1,8 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
-
-
-from fastapi import FastAPI
+from src.api.decoder.routers import decode_router
 
 
 app = FastAPI(
@@ -10,6 +8,8 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+app.include_router(decode_router)
 
 
 
