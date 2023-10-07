@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from src.api.decoder.routers import decode_router
-from src.api.vehicles.routers import router
+from src.api.vehicles.routers import vehicles_router
 
 
 app = FastAPI(
@@ -11,7 +11,7 @@ app = FastAPI(
 )
 
 app.include_router(decode_router)
-app.include_router(router)
+app.include_router(vehicles_router)
 
 
 if __name__ == "__main__":

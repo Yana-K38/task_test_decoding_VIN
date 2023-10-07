@@ -30,9 +30,12 @@ class Vehicle(Base):
     async def get_vehicles(
         session: AsyncSession = Depends(get_async_session),
     ) -> Page[VINRequest]:
+        """
+        Получить список всех транспортных средств из базы данных.
+        """
         query = text(
             """
-            SELECT * 
+            SELECT year, make, model, type_vehicle, color, dimensions, weight, vin
             FROM vehicles
             """
         )
@@ -46,9 +49,12 @@ class Vehicle(Base):
     async def get_vehicles_by_vin(
         vin: str, session: AsyncSession = Depends(get_async_session)
     ) -> VINRequest:
+        """
+        Получить информацию о транспортном средстве по его VIN-коду.
+        """
         query = text(
             """
-            SELECT *
+            SELECT year, make, model, type_vehicle, color, dimensions, weight, vin
             FROM vehicles WHERE vin=:vin
             """
         ).bindparams(vin=vin)
